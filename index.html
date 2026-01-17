@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo From Zero Days - Learn Japanese Without Fear</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2d2d2d;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe8ec 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ffb7c5 0%, #ff9eb5 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(255, 110, 142, 0.2);
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        nav button {
+            background: linear-gradient(135deg, #ffb7c5 0%, #ff9eb5 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(255, 110, 142, 0.2);
+        }
+
+        nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 110, 142, 0.4);
+        }
+
+        nav button.active {
+            background: linear-gradient(135deg, #ff9eb5 0%, #ff85a2 100%);
+            transform: scale(1.05);
+        }
+
+        .page {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #ff6e8e;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ffb7c5;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #ff85a2;
+            font-size: 1.6em;
+            margin: 30px 0 15px 0;
+        }
+
+        h4 {
+            color: #ff9eb5;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #ffe8ec 0%, #ffd4db 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            border: none;
+            font-size: 2.8em;
+            color: #ff6e8e;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff6e8e 0%, #ff5578 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 110, 142, 0.3);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 110, 142, 0.5);
+        }
+
+        .section {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid #ffb7c5;
+        }
+
+        .lesson-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #ffb7c5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(255, 110, 142, 0.2);
+        }
+
+        .lesson-card h4 {
+            margin-top: 0;
+        }
+
+        .lesson-card .duration {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .roadmap {
+            display: grid;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        table th {
+            background: linear-gradient(135deg, #ffb7c5 0%, #ff9eb5 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .practice-box {
+            background: #fff9fa;
+            border: 2px dashed #ffb7c5;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px 0 10px 35px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff6e8e;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 5px solid #ffb74d;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #ffe8ec 0%, #ffd4db 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-style: italic;
+            border-left: 5px solid #ff6e8e;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .page {
+                padding: 25px;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav button {
+                width: 100%;
+            }
+        }
+
+        .hiragana-large {
+            font-size: 3em;
+            color: #ff6e8e;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌸 Nihongo From Zero Days</h1>
+        <p>Learn Japanese Without Fear</p>
+    </header>
+
+    <div class="container">
+        <nav id="nav">
+            <button onclick="showPage('home')">Home</button>
+            <button onclick="showPage('lessons')">Lesson Index</button>
+            <button onclick="showPage('day1')">Day 1</button>
+            <button onclick="showPage('philosophy')">Our Method</button>
+            <button onclick="showPage('about')">About</button>
+            <button onclick="showPage('contact')">Contact</button>
+        </nav>
+
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h2>Learn Japanese Without Fear</h2>
+                <p>A gentle, step-by-step guide for absolute beginners who think Japanese is too hard</p>
+            </div>
+
+            <div class="section">
+                <h3>Welcome to Nihongo From Zero Days</h3>
+                <p>If you've ever wanted to learn Japanese but felt scared of the writing system, confused by complicated explanations, or unsure where to start—this site is for you.</p>
+                
+                <p>We believe anyone can learn Japanese. You don't need to be "good at languages." You don't need expensive courses. You just need to start small, go slow, and trust the process.</p>
+                
+                <p>Here, we take it one day at a time. One sound. One letter. One word. No rush. No pressure. Just you and the language, moving forward together.</p>
+            </div>
+
+            <h3>Who This Site Is For</h3>
+            <p>This site is made for:</p>
+            <ul class="checklist">
+                <li><strong>Absolute beginners</strong> who have never studied Japanese before</li>
+                <li><strong>Bangladeshi and South Asian learners</strong> who want explanations that make sense to them</li>
+                <li><strong>People afraid of Japanese scripts</strong> like Hiragana, Katakana, and Kanji</li>
+                <li><strong>Self-learners</strong> who don't have a teacher and need clear, simple guidance</li>
+                <li><strong>Future JLPT N5 test-takers</strong> who want a strong foundation from Day 1</li>
+            </ul>
+            
+            <p>If you're reading this and thinking, "Can I really do this?"—yes, you can. And we'll show you how.</p>
+
+            <div class="section">
+                <h3>How Learning Works Here</h3>
+                
+                <h4>Day 1: You start with just five sounds</h4>
+                <p>We don't throw 46 Hiragana characters at you. We start with あ (a), い (i), う (u), え (e), お (o). That's it. You learn how they sound, how they look, and how to recognize them.</p>
+                
+                <h4>Day 2–Day 5: You build slowly</h4>
+                <p>Each day adds a few more characters. By Day 5, you know all the basic Hiragana vowels and consonants. You're not memorizing—you're understanding.</p>
+                
+                <h4>Day 6–Day 10: You start using what you learned</h4>
+                <p>Simple words. Simple greetings. Simple sentences. Everything you learn is useful from Day 1.</p>
+                
+                <h4>No skipping. No cramming. Just daily progress</h4>
+                <p>Each lesson takes 15–20 minutes. You can go faster if you want, but there's no need to rush. The goal is to feel confident, not confused.</p>
+            </div>
+
+            <h3>Your 10-Day Roadmap</h3>
+            <div class="roadmap">
+                <div class="lesson-card" onclick="showPage('day1')">
+                    <h4>Day 1 – Hiragana Basics: The Five Vowels (あ い う え お)</h4>
+                    <p>Learn the foundation of Japanese pronunciation</p>
+                    <div class="duration">Duration: 15 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 2 – Hiragana: K-sounds (か き く け こ)</h4>
+                    <p>Build on your vowels with consonant combinations</p>
+                    <div class="duration">Duration: 15 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 3 – Hiragana: S-sounds (さ し す せ そ)</h4>
+                    <p>Soft, gentle sounds that create beautiful words</p>
+                    <div class="duration">Duration: 15 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 4 – Hiragana: T-sounds (た ち つ て と)</h4>
+                    <p>Discover unique sounds that don't exist in English</p>
+                    <div class="duration">Duration: 20 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 5 – Hiragana: N-sounds & Review (な に ぬ ね の)</h4>
+                    <p>Complete the basic set and review your progress</p>
+                    <div class="duration">Duration: 20 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 6 – Simple Japanese Words You Can Read Now</h4>
+                    <p>Put your knowledge to use with real words</p>
+                    <div class="duration">Duration: 15 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 7 – Greetings & Basic Phrases</h4>
+                    <p>こんにちは、ありがとう and more essential phrases</p>
+                    <div class="duration">Duration: 20 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 8 – Introduction to Katakana</h4>
+                    <p>Understand why Japanese has multiple scripts</p>
+                    <div class="duration">Duration: 15 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 9 – Numbers 1–10 in Japanese</h4>
+                    <p>Learn to count and recognize number words</p>
+                    <div class="duration">Duration: 15 minutes</div>
+                </div>
+                
+                <div class="lesson-card">
+                    <h4>Day 10 – Your First Full Sentence in Japanese</h4>
+                    <p>Introduce yourself completely in Japanese</p>
+                    <div class="duration">Duration: 20 minutes</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button class="cta-button" onclick="showPage('day1')">Begin Day 1 →</button>
+            </div>
+
+            <div class="quote-box">
+                <h3>A Message for Nervous Beginners</h3>
+                <p>We know how it feels.</p>
+                <p>You look at Japanese characters and think, "I'll never be able to read that."<br>
+                You hear native speakers and think, "I'll never sound like that."<br>
+                You see thick textbooks and think, "This is too much."</p>
+                
+                <p>But here's the truth: <strong>Japanese is learnable.</strong> Millions of people who once felt exactly like you are now fluent. They didn't have special talent. They just started small and kept going.</p>
+                
+                <p>This site exists because we believe you deserve a calm, clear path forward. No shame. No confusion. Just learning.</p>
+                
+                <p>You don't have to become fluent overnight. You just have to start today.</p>
+            </div>
+        </div>
+
+        <!-- LESSON INDEX PAGE -->
+        <div id="lessons" class="page">
+            <h2>Your Japanese Learning Journey</h2>
+            <p>Welcome to your lesson index. Below are all 10 days of your beginner journey. Each lesson builds on the previous one, so it's best to go in order—but you can always come back and review any day.</p>
+            
+            <div class="section">
+                <h4>How to use this page:</h4>
+                <p>Click on any day to open that lesson. Complete one lesson per day, or go at your own pace. There's no deadline. The only rule is: keep moving forward.</p>
+                <p>All lessons are aligned with <strong>JLPT N5</strong> foundation skills, so everything you learn here will be useful for the test and for real-life Japanese.</p>
+            </div>
+
+            <div class="roadmap">
+                <div class="lesson-card" onclick="showPage('day1')">
+                    <h4>Day 1: Hiragana Basics – The Five Vowels</h4>
+                    <p>Learn the five most important sounds in Japanese: あ い う え お. These are the building blocks of everything else. Short, simple, and essential.</p>
+                    <p><strong>Duration:</strong> 15 minutes<br>
+                    <strong>Goal:</strong> Recognize and pronounce all five vowel sounds</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 2: Hiragana – K-Sounds</h4>
+                    <p>Add five new characters: か き く け こ. Now you can start combining sounds to make simple words like "eki" (station) and "kaki" (persimmon).</p>
+                    <p><strong>Duration:</strong> 15 minutes<br>
+                    <strong>Goal:</strong> Read 10 Hiragana characters confidently</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 3: Hiragana – S-Sounds</h4>
+                    <p>Learn さ し す せ そ. These are soft, gentle sounds. You'll also start noticing patterns that make memorization easier.</p>
+                    <p><strong>Duration:</strong> 15 minutes<br>
+                    <strong>Goal:</strong> Recognize 15 Hiragana characters and read short combinations</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 4: Hiragana – T-Sounds</h4>
+                    <p>Learn た ち つ て と. One of these (つ) has a unique sound that doesn't exist in English, but we'll explain it clearly.</p>
+                    <p><strong>Duration:</strong> 20 minutes<br>
+                    <strong>Goal:</strong> Understand special sounds and read 20 Hiragana characters</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 5: Hiragana – N-Sounds & First Review</h4>
+                    <p>Learn な に ぬ ね の and do a quick review of everything so far. You'll be surprised how much you already know.</p>
+                    <p><strong>Duration:</strong> 20 minutes<br>
+                    <strong>Goal:</strong> Master 25 Hiragana characters and feel confident reviewing</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 6: Simple Japanese Words You Can Read Now</h4>
+                    <p>No new characters today. Instead, we'll practice reading real Japanese words using only the Hiragana you've learned. This is where it gets fun.</p>
+                    <p><strong>Duration:</strong> 15 minutes<br>
+                    <strong>Goal:</strong> Read 10–15 simple Japanese words</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 7: Greetings & Basic Phrases</h4>
+                    <p>Learn how to say hello, thank you, and goodbye in Japanese—and how to write them in Hiragana. You'll also learn when to use each phrase.</p>
+                    <p><strong>Duration:</strong> 20 minutes<br>
+                    <strong>Goal:</strong> Use 5 essential Japanese phrases confidently</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 8: Introduction to Katakana</h4>
+                    <p>What is Katakana? Why does Japanese have two scripts? We'll answer these questions and show you how Katakana is used for foreign words.</p>
+                    <p><strong>Duration:</strong> 15 minutes<br>
+                    <strong>Goal:</strong> Understand the purpose of Katakana and recognize its style</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 9: Numbers 1–10 in Japanese</h4>
+                    <p>Learn how to count from 1 to 10. We'll cover both the Japanese words and how to write them in Hiragana.</p>
+                    <p><strong>Duration:</strong> 15 minutes<br>
+                    <strong>Goal:</strong> Count to 10 and recognize number words</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h4>Day 10: Your First Full Sentence in Japanese</h4>
+                    <p>Put everything together and write your first complete sentence: "I am [your name]." You'll understand every character and every word.</p>
+                    <p><strong>Duration:</strong> 20 minutes<br>
+                    <strong>Goal:</strong> Write and speak a full sentence in Japanese</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>What Happens After Day 10?</h3>
+                <p>By the end of Day 10, you'll have a strong foundation in Hiragana, basic vocabulary, and essential phrases. You'll be ready to continue learning with confidence—whether through textbooks, apps, or tutors.</p>
+                <p>This is just the beginning. But it's a beginning that actually works.</p>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button class="cta-button" onclick="showPage('day1')">Start Day 1 Now</button>
+            </div>
+        </div>
+
+        <!-- DAY 1 LESSON -->
+        <div id="day1" class="page">
+            <h2>Day 1: Hiragana Basics – The Five Vowels</h2>
+
+            <div class="section">
+                <h3>Welcome to Day 1</h3>
+                <p>Congratulations on starting your Japanese learning journey. Today is special because it's the day you stop thinking "I can't" and start proving "I can."</p>
+                
+                <p>We're going to learn five characters. Just five. That's all.</p>
+                
+                <p>These five characters are the foundation of the entire Japanese language. Every other sound in Japanese builds on these. So today, we start small—but what you learn today will stay with you forever.</p>
+                
+                <p>Take a deep breath. You're about to read your first Japanese characters.</p>
+            </div>
+
+            <h3>What is Hiragana?</h3>
+            <p>Hiragana is one of the three writing systems used in Japanese. (The other two are Katakana and Kanji—but don't worry about those yet.)</p>
+            
+            <p>Think of Hiragana as the "basic alphabet" of Japanese. It's used for:</p>
+            <ul class="checklist">
+                <li>Japanese words that don't use Kanji</li>
+                <li>Grammar particles (small words that connect sentences)</li>
+                <li>Children's books and beginner materials</li>
+            </ul>
+            
+            <p>Every Japanese person learns Hiragana first, usually around age 5 or 6. That means if you're learning Hiragana now, you're following the same path native speakers took.</p>
+            
+            <p>Hiragana has 46 basic characters. But today, we're only learning <strong>5</strong>.</p>
+
+            <div class="section">
+                <h3>Why Hiragana Comes First</h3>
+                <p>Before you can speak Japanese fluently, you need to <strong>read</strong> Japanese.</p>
+                
+                <p>English speakers can get away with learning "romaji" (Japanese words written in English letters), but that creates bad habits. You end up guessing at pronunciation and struggling later when you see real Japanese text.</p>
+                
+                <p>By learning Hiragana from Day 1, you're learning the <strong>real</strong> language—the way Japanese people actually write and read.</p>
+                
+                <p>Don't worry if the characters look unfamiliar. In a few days, they'll feel as natural as A, B, C.</p>
+            </div>
+
+            <h3>Today's Characters: The Five Vowels</h3>
+            <p>In Japanese, there are five vowel sounds. These sounds appear in almost every Japanese word, so once you know them, you've unlocked a huge part of the language.</p>
+            
+            <p>Here they are:</p>
+
+            <table>
+                <tr>
+                    <th>Hiragana</th>
+                    <th>Sound</th>
+                    <th>How to Say It</th>
+                </tr>
+                <tr>
+                    <td class="hiragana-large">あ</td>
+                    <td><strong>a</strong></td>
+                    <td>Like "ah" in "father" (ফাদার-এ যেমন আ)</td>
+                </tr>
+                <tr>
+                    <td class="hiragana-large">い</td>
+                    <td><strong>i</strong></td>
+                    <td>Like "ee" in "see" (সি-তে যেমন ঈ)</td>
+                </tr>
+                <tr>
+                    <td class="hiragana-large">う</td>
+                    <td><strong>u</strong></td>
+                    <td>Like "oo" in "food" (ফুড-এ যেমন উ)</td>
+                </tr>
+                <tr>
+                    <td class="hiragana-large">え</td>
+                    <td><strong>e</strong></td>
+                    <td>Like "eh" in "bed" (বেড-এ যেমন এ)</td>
+                </tr>
+                <tr>
+                    <td class="hiragana-large">お</td>
+                    <td><strong>o</strong></td>
+                    <td>Like "oh" in "boat" (বোট-এ যেমন ও)</td>
+                </tr>
+            </table>
+
+            <div class="section">
+                <h3>Pronunciation Tips</h3>
+                
+                <h4>あ (a)</h4>
+                <p>Open your mouth wide, like you're at the doctor saying "ahhh." Relax your jaw. It should feel easy.</p>
+                
+                <h4>い (i)</h4>
+                <p>Smile slightly. Your lips should pull back a little. Think of the English word "eat" but shorter.</p>
+                
+                <h4>う (u)</h4>
+                <p>This is NOT like the English "oo" in "moon." Your lips don't round as much. Keep them relaxed. It's a softer sound.</p>
+                
+                <h4>え (e)</h4>
+                <p>This is like the "e" in "red." Not too open, not too closed. Just natural.</p>
+                
+                <h4>お (o)</h4>
+                <p>Your lips form a small circle, like you're about to say "boat." But don't drag the sound out. Keep it short and clean.</p>
+            </div>
+
+            <div class="practice-box">
+                <h3>How to Practice</h3>
+                
+                <p><strong>Step 1: Say each sound out loud 5 times.</strong><br>
+                Listen to yourself. Does it sound natural? Don't worry about being perfect—just get comfortable making the sounds.</p>
+                
+                <p><strong>Step 2: Look at each character and say its sound.</strong><br>
+                Point at あ and say "a." Point at い and say "i." Do this until you don't have to think about it.</p>
+                
+                <p><strong>Step 3: Close your eyes and try to "see" the characters in your mind.</strong><br>
+                This helps your brain start recognizing them automatically.</p>
+                
+                <p><strong>Step 4: Write each character 5 times on paper.</strong><br>
+                Yes, with a pen or pencil. Writing by hand helps you remember much faster than typing.</p>
+            </div>
+
+            <div class="warning-box">
+                <h3>Why This Feels Slow (And Why That's Good)</h3>
+                <p>You might be thinking: "Only five characters? I could learn way more than this!"</p>
+                
+                <p>Maybe. But most beginners burn out because they try to learn too much, too fast. They memorize 20 characters in one day, forget half of them the next day, and quit within a week.</p>
+                
+                <p>We're not doing that.</p>
+                
+                <p>We're learning <strong>slowly and deeply.</strong> By the end of today, these five characters will be locked into your memory. Tomorrow, we'll add more—and because today's foundation is strong, tomorrow will be easier.</p>
+                
+                <p>Trust the process. Slow is fast.</p>
+            </div>
+
+            <div class="section">
+                <h3>Common Beginner Questions</h3>
+                
+                <h4>Q: Do I need to memorize these perfectly before moving on?</h4>
+                <p>Not perfectly, but comfortably. You should be able to look at each character and say its sound without struggling. If you're 80% confident
